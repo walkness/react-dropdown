@@ -7,10 +7,11 @@ const DropdownToggle = (props, context) => (
     data-toggle='dropdown'
     role='button'
     aria-haspopup='true'
-    aria-expanded={ context.dropdownOpen }
-    onClick={ context.handleDropdownClick }>
+    aria-expanded={context.dropdownOpen}
+    onClick={context.handleDropdownClick}
+  >
 
-    <span className='caret'></span>
+    <span className='caret' />
 
     <span className='sr-only'>Toggle Dropdown</span>
 
@@ -20,6 +21,6 @@ const DropdownToggle = (props, context) => (
 DropdownToggle.contextTypes = {
   dropdownOpen: PropTypes.bool.isRequired,
   handleDropdownClick: PropTypes.func.isRequired,
-}
+};
 
 export default DropdownToggle;

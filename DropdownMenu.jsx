@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 
-const DropdownMenu = (props, context) => (
+const DropdownMenu = ({ children }) => (
   <ul className='dropdown-menu'>
-    { props.children }
+    { children }
   </ul>
 );
+
+DropdownMenu.propTypes = {
+  children: PropTypes.node,
+};
 
 export default DropdownMenu;
