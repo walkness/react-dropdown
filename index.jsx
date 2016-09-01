@@ -1,4 +1,7 @@
+/* globals document */
+
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 
 export { default as DropdownMenu } from './DropdownMenu';
 export { default as DropdownToggle } from './DropdownToggle';
@@ -7,6 +10,8 @@ class Dropdown extends Component {
 
   static propTypes = {
     className: PropTypes.string,
+    currentRoute: PropTypes.string,
+    children: PropTypes.node,
   };
 
   static childContextTypes = {
@@ -19,7 +24,7 @@ class Dropdown extends Component {
     super(props, context);
     this.state = {
       open: false,
-    }
+    };
   }
 
   getChildContext() {
@@ -27,6 +32,12 @@ class Dropdown extends Component {
       dropdownOpen: this.state.open,
       handleDropdownClick: this.handleDropdownClick.bind(this),
       closeDropdown: this.closeDropdown.bind(this),
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentRoute !== this.props.currentRoute) {
+      this.closeDropdown();
     }
   }
 
@@ -45,48 +56,40 @@ class Dropdown extends Component {
           dropdownClicked = true;
         }
       }
-      if (!dropdownClicked)
-        this.closeDropdown()
+      if (!dropdownClicked) {
+        this.closeDropdown();
+      }
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentRoute !== this.props.currentRoute)
+  handleDropdownClick() {
+    if (this.state.open) {
       this.closeDropdown();
-  }
-
-  handleDropdownClick(e) {
-    if (this.state.open)
-      this.closeDropdown()
-    else
-      this.openDropdown()
+    } else {
+      this.openDropdown();
+    }
   }
 
   openDropdown() {
-    this.setState({open: true}, () => {
+    this.setState({ open: true }, () => {
       this.boundClickHandler = this.handleDocumentClick.bind(this);
       document.addEventListener('click', this.boundClickHandler);
-    })
+    });
   }
 
   closeDropdown() {
-    this.setState({open: false}, () => {
+    this.setState({ open: false }, () => {
       if (this.boundClickHandler) {
         document.removeEventListener('click', this.boundClickHandler);
         this.boundClickHandler = null;
       }
-    })
+    });
   }
 
   render() {
-    let classNames = [];
-    if (this.props.className)
-      classNames.push(this.props.className)
-    classNames.push('dropdown')
-    if (this.state.open)
-      classNames.push('open');
+    const { open } = this.state;
     return (
-      <li className={ classNames.join(' ') }>
+      <li className={classNames(this.props.className, 'dropdown', { open })}>
         { this.props.children }
       </li>
     );
