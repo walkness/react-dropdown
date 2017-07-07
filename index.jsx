@@ -89,7 +89,7 @@ class Dropdown extends Component {
   render() {
     const { open } = this.state;
     return (
-      <li className={classNames(this.props.className, 'dropdown', { open })}>
+      <li className={classNames(this.props.className, 'dropdown', { open, show: open })}>
         { this.props.children }
       </li>
     );
