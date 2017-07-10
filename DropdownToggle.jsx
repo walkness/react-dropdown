@@ -5,7 +5,6 @@ const DropdownToggle = (props, context) => (
   <button
     className='dropdown-toggle'
     data-toggle='dropdown'
-    role='button'
     aria-haspopup='true'
     aria-expanded={context.dropdownOpen}
     onClick={context.handleDropdownClick}

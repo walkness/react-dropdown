@@ -9,9 +9,15 @@ export { default as DropdownToggle } from './DropdownToggle';
 class Dropdown extends Component {
 
   static propTypes = {
+    children: PropTypes.node,
     className: PropTypes.string,
     currentRoute: PropTypes.string,
-    children: PropTypes.node,
+  };
+
+  static defaultProps = {
+    children: null,
+    className: null,
+    currentRoute: null,
   };
 
   static childContextTypes = {

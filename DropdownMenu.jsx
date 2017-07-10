@@ -14,4 +14,10 @@ DropdownMenu.propTypes = {
   right: PropTypes.bool,
 };
 
+DropdownMenu.defaultProps = {
+  children: null,
+  className: null,
+  right: false,
+};
+
 export default DropdownMenu;
