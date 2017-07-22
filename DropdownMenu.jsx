@@ -3,9 +3,9 @@ import classNames from 'classnames';
 
 
 const DropdownMenu = ({ children, className, right }) => (
-  <ul className={classNames('dropdown-menu', className, { 'dropdown-menu-right': right })}>
+  <div className={classNames('dropdown-menu', className, { 'dropdown-menu-right': right })}>
     { children }
-  </ul>
+  </div>
 );
 
 DropdownMenu.propTypes = {
