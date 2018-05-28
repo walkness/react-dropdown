@@ -4,14 +4,12 @@ import PropTypes from 'prop-types';
 
 const DropdownToggle = (props, context) => (
   <button
-    className='dropdown-toggle'
+    className='btn-link dropdown-toggle'
     data-toggle='dropdown'
     aria-haspopup='true'
     aria-expanded={context.dropdownOpen}
     onClick={context.handleDropdownClick}
   >
-
-    <span className='caret' />
 
     <span className='sr-only'>Toggle Dropdown</span>
 
